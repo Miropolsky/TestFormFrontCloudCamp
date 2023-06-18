@@ -6,10 +6,11 @@ import CustomInput from '../common/CustomInput/CustomInput';
 import CustomButton from '../common/CustomButton/CustomButton';
 import { CustomSelect } from '../common/CustomSelect/CustomSelect';
 import { useNavigate } from 'react-router-dom';
+import { SignupSchema } from '../validate';
 
 type PropsTypeCustomForm = {
-    sendForm: (Advantages: Array<string>, Nickname: string, Name: string, Surname: string, Sex: string, Checkbox: Array<string>,
-        Radio: string, About: string) => void
+    sendForm: (advantages: Array<string>, nickname: string, name: string, surname: string, sex: string, checkbox: Array<string>,
+        radio: string, about: string) => void
 }
 
 export default function CustomForm(props: PropsTypeCustomForm) {
@@ -50,6 +51,7 @@ export default function CustomForm(props: PropsTypeCustomForm) {
                 initialValues={
                     { nickname: "", name: "", sername: '', sex: '', advantages: advantages, checkbox: [], radio: '', about: ''}
                 }
+                validationSchema={SignupSchema}
                 onSubmit={(value: any) => {
                     let mas = [];
                     for (let i = 0; i < advantages.length; i++) {
@@ -71,78 +73,104 @@ export default function CustomForm(props: PropsTypeCustomForm) {
                     props.sendForm(mas, value.Nickname, value.Name, value.Surname, value.Sex, value.Checkbox, value.Radio, value.About)
                 }}
             >
-                <Form>
-                {step === 0 && (<>
-                    <div className={styles.titleInput}>
-                        NickName
-                    </div>
-                    <CustomFieldInput name='Nickname' type='text' delete={0}/>
-                    <div className={styles.titleInput}>
-                        Name
-                    </div>
-                    <CustomFieldInput name='Surname' type='text' delete={0}/>
-                    <div className={styles.titleInput}>
-                        Surname
-                    </div>
-                    <CustomFieldInput name='Name' type='text' delete={0}/>
-                    <div className={styles.titleInput}>
-                        Sex
-                    </div>
-                    <CustomFieldSelect value={['man', 'woman']} name='Sex'/>
-                </>)}
-
-                {
-                    step === 1 && (<>
+                {({ errors, touched }) => (
+                    <Form>
+                    {step === 0 && (<>
                         <div className={styles.titleInput}>
-                            Advantages
+                            NickName
                         </div>
-                        <div className={styles.advantages}>
-                            {advantages.map((el, i) => {
-                                return <CustomFieldInput name={el.name} key={i} value={el.value} type='text'
-                                            placeholder='Placeholder' delete={1} onDel={deleteAdvantages} idfield={el.id}
-                                        />
-                            })}
-                            <CustomButton type='button' width='44px' height='44px' onClick={addAdvantages} text='+'
-                             border='2px solid #5558FA' background='white' color='#5558FA' fontSize='24px'/>
-                        </div>
+                        <CustomFieldInput name='nickname' type='text' delete={0}/>
+                        {errors.nickname && touched.nickname ? (
+                            <div className={styles.error}>{errors.nickname}</div>
+                        ) : null}
                         <div className={styles.titleInput}>
-                            Checkbox group
+                            Name
                         </div>
-                        <div role="group" aria-labelledby="checkbox-group" className={styles.checkbox}>
-                            {['1','2','3'].map(el => {
-                                return <label key={el}>
-                                <Field type="checkbox" name="Checkbox" value={el} />
-                                <span>{el}</span>
-                              </label>
-                            })}
+                        <CustomFieldInput name='name' type='text' delete={0}/>
+                        {errors.name && touched.name ? (
+                            <div className={styles.error}>{errors.name}</div>
+                        ) : null}
+                        <div className={styles.titleInput}>
+                            Sername
                         </div>
+                        <CustomFieldInput name='sername' type='text' delete={0}/>
+                        {errors.sername && touched.sername ? (
+                            <div className={styles.error}>{errors.sername}</div>
+                        ) : null}
+                        <div className={styles.titleInput}>
+                            Sex
+                        </div>
+                        <CustomFieldSelect value={['man', 'woman']} name='sex'/>
+                        {errors.sex && touched.sex ? (
+                            <div className={styles.error}>{errors.sex}</div>
+                        ) : null}
                         
+                    </>)}
+
+                    {
+                        step === 1 && (<>
+                            <div className={styles.titleInput}>
+                                Advantages
+                            </div>
+                            <div className={styles.advantages}>
+                                {advantages.map((el, i) => {
+                                    return <CustomFieldInput name={el.name} key={i} value={el.value} type='text'
+                                                placeholder='Placeholder' delete={1} onDel={deleteAdvantages} idfield={el.id}
+                                            />
+                                })}
+                                <CustomButton type='button' width='44px' height='44px' onClick={addAdvantages} text='+'
+                                border='2px solid #5558FA' background='white' color='#5558FA' fontSize='24px'/>
+                            </div>
+                            <div className={styles.titleInput}>
+                                Checkbox group
+                            </div>
+                            <div role="group" aria-labelledby="checkbox-group" className={styles.checkbox}>
+                                {['1','2','3'].map(el => {
+                                    return <label key={el}>
+                                    <Field type="checkbox" name="checkbox" value={el} />
+                                    <span>{el}</span>
+                                </label>
+                                })}
+                            </div>
+                            {errors.checkbox && touched.checkbox ? (
+                            <div className={styles.error}>{errors.checkbox}</div>
+                        ) : null}
+                            
+                            <div className={styles.titleInput}>
+                                Radio group
+                            </div>
+                            <div role="group" aria-labelledby="my-radio-group" className={styles.radio}>
+                                {['1','2','3'].map(el => {
+                                    return <label key={el}>
+                                    <Field type="radio" name="radio" value={el} />
+                                    <span>{el}</span>
+                                </label>
+                                })}
+                            </div>
+                            {errors.radio && touched.radio ? (
+                            <div className={styles.error}>{errors.radio}</div>
+                        ) : null}
+
+                        </>)
+                    }
+
+                    { step === 2 && (<>
                         <div className={styles.titleInput}>
-                            Radio group
+                                About
                         </div>
-                        <div role="group" aria-labelledby="my-radio-group" className={styles.radio}>
-                            {['1','2','3'].map(el => {
-                                return <label key={el}>
-                                <Field type="radio" name="Radio" value={el} />
-                                <span>{el}</span>
-                              </label>
-                            })}
-                        </div>
-
-                    </>)
-                }
-
-                { step === 2 && (<>
-                    <div className={styles.titleInput}>
-                            About
+                        <CustomFieldTextArea name='about' placeholder='Placeholder'/>
+                        {errors.about && touched.about ? (
+                            <div className={styles.error}>{errors.about}</div>
+                        ) : null}
+                    </>)}
+                    <div className={styles.btnNext}>
+                        <CustomButton onClick={downStep} type='button' text='Назад' border='1px solid #5558FA' background='white' color='#5558FA'/>
+                        {step == 0 && <CustomButton onClick={upStep} type='button' text='Далее' disabled={!!errors.name || !!errors.nickname || !errors.sex || !!errors.sername}/>}
+                        {step == 1 && <CustomButton onClick={upStep} type='button' text='Далее' disabled={!!errors.checkbox || !!errors.radio}/>}
+                        {step === 2 && <CustomButton type="submit" text='Отправить' disabled={!!errors.about}/>}
                     </div>
-                    <CustomFieldTextArea name='About' placeholder='Placeholder'/>
-                </>)}
-                <div className={styles.btnNext}>
-                    <CustomButton onClick={downStep} type='button' text='Назад' border='1px solid #5558FA' background='white' color='#5558FA'/>
-                    {step === 2 ? <CustomButton type="submit" text='Отправить'/> : <CustomButton onClick={upStep} type='button' text='Далее' />}
-                </div>
                 </Form>
+                )}
             </Formik>
             </div>
         </div>

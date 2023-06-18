@@ -21,11 +21,10 @@ const FormReducer = (state = initialState, action: ActionsType) => {
         }
 }
 
-const sendForm = (Advantages: Array<string>, Nickname: string, Name: string, Surname: string, Sex: string, Checkbox: Array<string>,
-    Radio: string, About: string): ThunkType => {
+const sendForm = (advantages: Array<string>, nickname: string, name: string, surname: string, sex: string, checkbox: Array<string>,
+    radio: string, about: string): ThunkType => {
         return (dispatch) => {
-            let res = formApi.sendForm(Advantages, Nickname, Name, Surname, Sex, Checkbox, Radio, About);
-            // if (res.resultCode)
+            let res = formApi.sendForm(advantages, nickname, name, surname, sex, checkbox, radio, about)
         }
     }
         

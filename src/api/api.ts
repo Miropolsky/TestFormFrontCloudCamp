@@ -6,18 +6,18 @@ const instance = axios.create({
 });
 
 const formApi = {
-    sendForm(Advantages: Array<string>, Nickname: string, Name: string, Surname: string, Sex: string, Checkbox: Array<string>,
-        Radio: string, About: string) {
+    sendForm(advantages: Array<string>, nickname: string, name: string, sername: string, sex: string, checkbox: Array<string>,
+        radio: string, about: string) {
         return instance.post('/content/v1/bootcamp/frontend', {
-            Advantages,
-            Nickname,
-            Name,
-            Surname,
-            Sex,
-            Checkbox,
-            Radio,
-            About
-        })
+            advantages,
+            nickname,
+            name,
+            sername,
+            sex,
+            checkbox,
+            radio,
+            about
+        }).catch(res => alert('Ошибка'))
     }
 }
 
