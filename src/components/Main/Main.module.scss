@@ -1,0 +1,58 @@
+.container{
+    display: flex;
+    justify-content: center;
+    // font-family: 'SB Sans Interface';
+    .card{
+        margin-top: 25px;
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        width: 54%;
+        display: flex;
+        flex-direction: column;
+        .contacts{
+            display: flex;
+            column-gap: 25px;
+            .contactsInformation{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                row-gap: 8px;
+                .name{
+                    font-weight: 600;
+                    color: #333333;
+                    line-height: 26px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+                .links{
+                    display: flex;
+                    align-items: center;
+                    column-gap: 17px;
+                }
+            }
+        }
+
+        .lineGray{
+            margin-top: 25px;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .form{
+            margin-top: 25px;
+            display: flex;
+
+            .titleInput{
+                margin-top: 24px;
+                font-size: 14px;
+                line-height: 20px;
+                margin-bottom: 8px;
+            }
+            .btn{
+                margin-top: 60px;
+                margin-bottom: 290px;
+            }
+        }
+    }
+    
+}

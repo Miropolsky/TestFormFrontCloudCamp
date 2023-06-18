@@ -1,0 +1,64 @@
+.container{
+    display: flex;
+    justify-content: center;
+    // font-family: 'SB Sans Interface';
+    .card{
+
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        padding-left: 110px;
+        padding-right: 110px;
+        width: 54%;
+        display: flex;
+        flex-direction: column;
+        .form{
+            margin-top: 90px;
+            >.titleInput:not(:nth-child(1)){
+                margin-top: 48px;
+            }
+            .titleInput{
+                margin-top: 25px;
+                margin-bottom: 8px;
+            }
+
+            .btnNext{
+                margin-top: 85px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .advantages{
+                display: flex;
+                flex-direction: column;
+                row-gap: 8px;
+            }
+
+            .checkbox{
+                display: flex;
+                flex-direction: column;
+                span{
+                    margin-left: 8px;
+                }
+            }
+            .radio{
+                display: flex;
+                flex-direction: column;
+                span{
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}
+
+.textArea{
+    textarea{
+        padding: 12px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 84px;
+    }
+}

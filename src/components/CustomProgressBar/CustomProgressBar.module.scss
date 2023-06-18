@@ -1,0 +1,29 @@
+.container{
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    height: 8px;
+    // margin-left: 40px;
+    // margin-right: 40px;
+    
+    .defaultProgress{
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    .progress{
+        position: absolute;
+        // left: 1px;
+        bottom: 1px;
+        border-radius: 10px;
+        background: #5558FA;
+        height: 8px;
+    
+    }
+}

@@ -1,0 +1,13 @@
+.container{
+    z-index: 10000;
+    position: relative;
+    img{
+        width: 16px;
+        height: 16px;
+    }
+    .number{
+        position: absolute;
+        left: 3px;
+        top: 35px;
+    }
+}
